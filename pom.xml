@@ -38,7 +38,37 @@
 	    <artifactId>spring-web</artifactId>
 	    <version>4.3.29.RELEASE</version>
 	</dependency>
-	  	
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-webmvc</artifactId>
+	    <version>4.3.29.RELEASE</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-test</artifactId>
+	    <version>4.3.29.RELEASE</version>
+	    <scope>test</scope>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-orm</artifactId>
+	    <version>4.3.29.RELEASE</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
+	<dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>jstl</artifactId>
+	    <version>1.2</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/taglibs/standard -->
+	<dependency>
+	    <groupId>taglibs</groupId>
+	    <artifactId>standard</artifactId>
+	    <version>1.1.2</version>
+	</dependency>				  	
   </dependencies>
   
 </project>
