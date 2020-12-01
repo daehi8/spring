@@ -8,8 +8,10 @@
 		<!-- 컨트롤러위치를 변수로 DispatcherServlet에 보낸다.-->
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
+			<!-- 컨트롤러에서는 value의 파일들을 하나의 파일로 인식 -->
 			<param-value>
 				/WEB-INF/controller/spring-servlet.xml
+				/WEB-INF/controller/bean-servlet.xml
 			</param-value>
 		</init-param>
 	</servlet>

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+	>
+	
+	<!-- 
+	- 클래스 객체  생성
+	JSP <jsp:useBena>과 유사 
+	생성자가 private일 경우 객체 생성 불가능
+	DI를 활용해 Model 클래스에서 사용
+	객체 생성을 사용자의 요청마다 하는 것이 아닌 bean에서 만든 객체를 받아오는 형식 
+	-->
+	
+	<bean id="dto" class="spring.model.DTO"/>
+	
+	<bean id="dto2" class="spring.model.DTO">
+		<!-- 생성자 호출 태그 - 매개변수를 value로 설정-->
+		<constructor-arg value="java"/>
+		<constructor-arg value="100"/>
+	</bean>	
+	
+	<bean id="dto3" class="spring.model.DTO">
+		<constructor-arg value="hello"/>
+		<constructor-arg value="200"/>
+	</bean>
+	
+	<bean id="day" class="java.util.Date"/>
+	
+	<bean id="dto4" class="spring.model.DTO">
+		<!-- 
+		value는 기본타입 변수
+		ref는 참조타입 변수
+		생성한 bean day를 ref에 대입해서 사용
+		 -->
+		<constructor-arg value="spring"/>
+		<constructor-arg value="2300"/>
+		<constructor-arg ref="day"/>
+	</bean>
+	
+	<!-- set method로 값을 넣어주는 기능 -->
+	<bean id="dto5" class="spring.model.DTO">
+		<property name="name" value="global"/>
+		<property name="num" value="1234"/>
+		<property name="day" ref="day"/>
+	</bean>
+
+</beans>

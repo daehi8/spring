@@ -1,5 +1,7 @@
 package spring.model;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,13 +24,36 @@ public class HelloBean {
 	@Autowired
 	private DTO dto3 = null;
 	
+	@Autowired
+	private Date day = null;
+	
+	@Autowired
+	private DTO dto4 = null;
+	
+	@Autowired
+	private DTO dto5 = null;
+	
+	/*
+	변수 이름 = bean id 
+	
+	bean을 여러개 생성했을때
+	변수 이름이 컨트롤러의 bean에 없을경우 에러
+	
+	bean을 하나만  생성했을 경우는
+	변수 이름이 달라도 연결 가능 
+	 
+	@Autowired
+	private DTO d = null;
+	*/
+	
 	// 컨트롤러의 요청이 해당 URL로 들어올경우 JSP페이지를 리턴시킨다.
 	// 처음 실행시 RequestMapping을 모두 로딩
 	@RequestMapping("/hello.do")
 	public String hello() {
 		System.out.println(dto.getName());
-		System.out.println(dto2.getName());
-		System.out.println(dto3.getName());
+		System.out.println(dto5.getName());
+		System.out.println(dto5.getNum());
+		System.out.println(dto5.getDay());
 		return "/WEB-INF/view/1130/hello.jsp";
 	}
 	
