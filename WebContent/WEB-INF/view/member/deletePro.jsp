@@ -12,7 +12,7 @@
 <c:if test="${check==1}">
 
 <body bgcolor="${bodyback_c}">
-<form method="post" action="/mvc/member/main.do" name="userinput" >
+<form method="post" action="/spring/member/main.do" name="userinput" >
 <table width="270" border="0" cellspacing="0" cellpadding="5" align="center">
   <tr bgcolor="${title_c}"> 
     <td height="39" align="center">
@@ -21,7 +21,7 @@
   <tr bgcolor="${value_c}">
     <td align="center"> 
       <p>흑흑.... 서운합니다. 안녕히 가세요.</p>
-      <meta http-equiv="Refresh" content="5;url=/mvc/member/main.do" >
+      <meta http-equiv="Refresh" content="5;url=/spring/member/main.do" >
     </td>
   </tr>
   <tr bgcolor="${value_c}">

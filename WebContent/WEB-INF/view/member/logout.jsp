@@ -5,5 +5,5 @@
 <fmt:requestEncoding value="UTF-8"/>
 <script>
 	alert("로그아웃되었습니다.")
-	window.location="/mvc/member/loginForm.do"
+	window.location="/spring/member/loginForm.do"
 </script>

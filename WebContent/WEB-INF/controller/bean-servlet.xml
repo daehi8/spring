@@ -50,4 +50,8 @@
 		<property name="day" ref="day"/>
 	</bean>
 
+	<!-- DAO 설정 -->
+	<bean id = "memberDAO" class ="ch11.logon.LogonDBBean"/>
+	<bean id = "memberDTO" class ="ch11.logon.LogonDataBean"/>
+	
 </beans>

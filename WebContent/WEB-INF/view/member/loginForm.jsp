@@ -28,7 +28,7 @@
    </script>
 </head>
 <BODY onload="begin()" bgcolor="${bodyback_c}">
-<form name="myform" action="/mvc/member/loginPro.do" method="post" onSubmit="return checkIt()">
+<form name="myform" action="/spring/member/loginPro.do" method="post" onSubmit="return checkIt()">
 <TABLE cellSpacing=1 cellPadding=1 width="260" border=1 align="center" >
   
   <TR height="30">
@@ -46,7 +46,7 @@
     <TD colspan="2" align="middle" bgcolor="${title_c}" >
       <INPUT type=submit value="로그인"> 
       <INPUT type=reset value="다시입력">
-      <input type="button" value="회원가입" onclick="javascript:window.location='/mvc/member/inputForm.do'"></TD></TR>
+      <input type="button" value="회원가입" onclick="javascript:window.location='/spring/member/inputForm.do'"></TD></TR>
 </TABLE>
 </form>
 

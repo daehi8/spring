@@ -39,7 +39,7 @@ function focusIt()
        &nbsp;
        </td>
    
-       <form name="inform" method="post" action="/mvc/member/loginPro.do"  onSubmit="return checkIt();">
+       <form name="inform" method="post" action="/spring/member/loginPro.do"  onSubmit="return checkIt();">
 
         <td bgcolor="${title_c}"  width="100" align="right">아이디</td>
         <td width="100" bgcolor="${value_c}">
@@ -54,7 +54,7 @@ function focusIt()
        <tr>
           <td colspan="3" bgcolor="${title_c}"   align="center">
             <input type="submit" name="Submit" value="로그인">
-            <input type="button"  value="회원가입" onclick="javascript:window.location='/mvc/member/inputForm.do'">
+            <input type="button"  value="회원가입" onclick="javascript:window.location='/spring/member/inputForm.do'">
           </td></form></tr></table>
 </c:if>
 
@@ -66,9 +66,9 @@ function focusIt()
            <td rowspan="3" bgcolor="${value_c}" align="center">
              ${sessionScope.memId}님이 <br>
              방문하셨습니다
-             <form  method="post" action="/mvc/member/logout.do">  
+             <form  method="post" action="/spring/member/logout.do">  
              <input type="submit"  value="로그아웃">
-             <input type="button" value="회원정보변경" onclick="javascript:window.location='/mvc/member/modify.do'">
+             <input type="button" value="회원정보변경" onclick="javascript:window.location='/spring/member/modify.do'">
              </form>
          </td>
         </tr>

@@ -6,12 +6,6 @@
  
  public class LogonDBBean {
     
- 	private static LogonDBBean instance = new LogonDBBean();
-    
-    public static LogonDBBean getInstance() {return instance; }
-    
-    private LogonDBBean() {}
-    
     private Connection getConnection() throws Exception {
       Context initCtx = new InitialContext();
       Context envCtx = (Context) initCtx.lookup("java:comp/env");

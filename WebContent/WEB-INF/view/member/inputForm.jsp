@@ -44,7 +44,7 @@
             return;
         }
         // url과 사용자 입력 id를 조합합니다.
-        url = "/mvc/member/confirmId.do?id="+userinput.id.value ;
+        url = "/spring/member/confirmId.do?id="+userinput.id.value ;
         
         // 새로운 윈도우를 엽니다.
         open(url, "confirm",  "toolbar=no, location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=300, height=200");
@@ -54,7 +54,7 @@
 
 <body bgcolor="${bodyback_c}">
 
-<form method="post" action="/mvc/member/inputPro.do" name="userinput" onSubmit="return checkIt()">
+<form method="post" action="/spring/member/inputPro.do" name="userinput" onSubmit="return checkIt()">
   <table width="600" border="1" cellspacing="0" cellpadding="3" align="center" >
     <tr> 
     <td colspan="2" height="39" align="center" bgcolor="${bodyback_c}" >
@@ -118,7 +118,7 @@
       <td colspan="2" align="center" bgcolor="${bodyback_c}"> 
           <input type="submit" name="confirm" value="등   록" >
           <input type="reset" name="reset" value="다시입력">
-          <input type="button" value="가입안함" onclick="javascript:window.location='/mvc/member/main.do'">
+          <input type="button" value="가입안함" onclick="javascript:window.location='/spring/member/main.do'">
       </td>
     </tr>
   </table>

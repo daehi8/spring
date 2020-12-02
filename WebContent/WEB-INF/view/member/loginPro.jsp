@@ -7,7 +7,7 @@
 
 <c:if test="${check == 1}">
 	<script>
-		window.location="/mvc/member/main.do"
+		window.location="/spring/member/main.do"
 	</script>
 </c:if>
 <c:if test="${check == 0}">

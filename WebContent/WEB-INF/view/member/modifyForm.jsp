@@ -39,7 +39,7 @@
 </script>
 
 <body bgcolor="${bodyback_c}">
-<form method="post" action="/mvc/member/modifyPro.do" name="userinput" onsubmit="return checkIt()">
+<form method="post" action="/spring/member/modifyPro.do" name="userinput" onsubmit="return checkIt()">
 <input type="hidden" name="id" value="${dto.id}">
   <table width="600" border="1" cellspacing="0" cellpadding="3"  align="center">
     <tr > 
@@ -106,7 +106,7 @@
     <tr> 
       <td colspan="2" align="center" bgcolor="${value_c}"> 
        <input type="submit" name="modify" value="수   정" >
-       <input type="button" value="취  소" onclick="javascript:window.location='/mvc/member/main.do'">      
+       <input type="button" value="취  소" onclick="javascript:window.location='/spring/member/main.do'">      
       </td>
     </tr>
   </table>

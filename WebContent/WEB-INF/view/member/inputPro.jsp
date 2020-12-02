@@ -6,5 +6,5 @@
 
 <script>
 	alert("가입되었습니다.")
-	window.location="/mvc/member/loginForm.do"
+	window.location="/spring/member/loginForm.do"
 </script>

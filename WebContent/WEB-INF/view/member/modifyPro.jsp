@@ -21,9 +21,9 @@
   <tr>
     <td bgcolor="${value_c}" align="center"> 
       <form>
-	    <input type="button" value="메인으로" onclick="window.location='/mvc/member/main.do'">
+	    <input type="button" value="메인으로" onclick="window.location='/spring/member/main.do'">
       </form>
-      5초후에 메인으로 이동합니다.<meta http-equiv="Refresh" content="5;url=/mvc/member/main.do" >
+      5초후에 메인으로 이동합니다.<meta http-equiv="Refresh" content="5;url=/spring/member/main.do" >
     </td>
   </tr>
 </table>
