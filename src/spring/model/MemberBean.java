@@ -18,6 +18,9 @@ public class MemberBean {
 	@Autowired
 	private LogonDBBean memberDAO = null;
 	
+	@Autowired
+	private LogonDataBean memberDTO = null;
+	
 	@RequestMapping("main.do")
 	public String main() {
 		return "member/main";
@@ -69,12 +72,21 @@ public class MemberBean {
 	}
 	
 	@RequestMapping("modifyForm.do")
-	public String modifyForm() {
+	public String modifyForm(HttpSession session, Model model) throws Exception {
+		
+		String id = (String) session.getAttribute("memId");
+		memberDTO = memberDAO.getMember(id);
+		model.addAttribute("dto", memberDTO);
 		return "member/modifyForm";
 	}
 	
 	@RequestMapping("modifyPro.do")
-	public String modifyPro() {
+	public String modifyPro(LogonDataBean dto, HttpSession session, Model model) throws Exception {
+		
+		String sessionId = (String)session.getAttribute("memId");
+		dto.setId(sessionId);
+		memberDAO.updateMember(dto);
+
 		return "member/modifyPro";
 	}
 	
@@ -84,12 +96,25 @@ public class MemberBean {
 	}
 	
 	@RequestMapping("deletePro.do")
-	public String deletePro() {
+	public String deletePro(String passwd, HttpSession session, Model model) throws Exception {
+		
+		String id = (String)session.getAttribute("memId");
+		int check = memberDAO.deleteMember(id, passwd);
+		if(check == 1) {
+			session.invalidate();
+		}
+		model.addAttribute("check", check);
+		
 		return "member/deletePro";
 	}
 	
 	@RequestMapping("confirmId.do")
-	public String confirmId() {
+	public String confirmId(String id, Model model) throws Exception {
+		
+		int check = memberDAO.confirmId(id);
+		model.addAttribute("check", check);
+		model.addAttribute("id", id);
+		
 		return "member/confirmId";
 	}
 }
