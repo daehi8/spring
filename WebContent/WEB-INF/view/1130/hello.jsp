@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1>hello</h1>
-	<form action ="/spring/pro.do">
+	<form action ="/spring/pro2.do">
 		이름 : <input type = "text" name = "name" /> <br />
 		번호 : <input type = "text" name = "num" /> <br />
 		<input type = "submit" value = "전송" />

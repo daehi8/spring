@@ -8,5 +8,9 @@
 </head>
 <body>
 	<h1>pro</h1>
+	name : ${dto.name}
+	num : ${dto.num}
+	name : ${name}
+	num : ${num}
 </body>
 </html>
