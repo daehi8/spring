@@ -10,7 +10,7 @@ import javax.naming.*;
 // 다른 클래스에서 서비스 호출이 가능하다.
 // 표준화(인터페이스상속)를 하지 않았을 경우 서비스 역할 불가능 
  @Service("LogonDBBean")
- public class LogonDBBean implements LogonDBBeanService{
+ public class LogonDBBean{
     
     private Connection getConnection() throws Exception {
       Context initCtx = new InitialContext();
