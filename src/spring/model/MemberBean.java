@@ -45,16 +45,17 @@ public class MemberBean {
 	}
 	
 	@RequestMapping(value="loginPro.do", method=RequestMethod.POST)
-	public String loginPro(LogonDataBean dto, HttpSession session, Model model) throws Exception {
-		
-		String id = dto.getId();
-		String passwd = dto.getPasswd();
-		
+	public String loginPro(String id, 
+			String passwd, 
+			HttpSession session, 
+			Model model) throws Exception {
+
 		int check = memberDAO.userCheck(id, passwd);
 		if(check == 1) {
 			session.setAttribute("memId", id);
 		}
 		model.addAttribute("check", check);
+		
 		return "member/loginPro";
 	}
 	
@@ -77,11 +78,14 @@ public class MemberBean {
 		String id = (String) session.getAttribute("memId");
 		memberDTO = memberDAO.getMember(id);
 		model.addAttribute("dto", memberDTO);
+		
 		return "member/modifyForm";
 	}
 	
 	@RequestMapping("modifyPro.do")
-	public String modifyPro(LogonDataBean dto, HttpSession session, Model model) throws Exception {
+	public String modifyPro(LogonDataBean dto, 
+			HttpSession session, 
+			Model model) throws Exception {
 		
 		String sessionId = (String)session.getAttribute("memId");
 		dto.setId(sessionId);
