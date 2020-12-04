@@ -50,18 +50,17 @@ public class BoardDBBean implements BoardDaoService{
 			}
  
 			sql = "insert into board(num,writer,email,subject,passwd,reg_date,";
-			sql+="ref,re_step,re_level,content,ip) values(board_seq.NEXTVAL,?,?,?,?,?,?,?,?,?,?)";
+			sql+="ref,re_step,re_level,content,ip) values(board_seq.NEXTVAL,?,?,?,?,sysdate,?,?,?,?,?)";
 				pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, article.getWriter());
 			pstmt.setString(2, article.getEmail());
 			pstmt.setString(3, article.getSubject());
 			pstmt.setString(4, article.getPasswd());
-			pstmt.setTimestamp(5, article.getReg_date());
-			pstmt.setInt(6, ref);
-			pstmt.setInt(7, re_step);
-			pstmt.setInt(8, re_level);
-			pstmt.setString(9, article.getContent());
-			pstmt.setString(10, article.getIp());
+			pstmt.setInt(5, ref);
+			pstmt.setInt(6, re_step);
+			pstmt.setInt(7, re_level);
+			pstmt.setString(8, article.getContent());
+			pstmt.setString(9, article.getIp());
 			pstmt.executeUpdate();
 		} catch(Exception ex) {
 			ex.printStackTrace();

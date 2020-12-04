@@ -64,7 +64,7 @@
     <td align="center"  width="100"> 
        <a href="mailto:${article.email}">${article.writer}</a>
 	</td>
-    <td align="center"  width="150">${article.reg_date}
+    <td align="center"  width="150"><fmt:formatDate value="${article.reg_date}" type="both"/>
 	</td>
     <td align="center"  width="50">${article.readcount}</td>
     <td align="center" width="100" >${article.ip}</td>
