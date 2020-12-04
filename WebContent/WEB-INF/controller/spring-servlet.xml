@@ -18,7 +18,10 @@
 		<property name="suffix" value=".jsp"/>
 	</bean>
 	
-	<!-- 해당 패키지에서 @controller가 있는 곳을 호출 -->
+	<!-- 
+	해당 패키지에서 @controller가 있는 곳을 호출 
+	@Controller, @Serivce, @Repository 를 스캔한 후 Bean객체로 자동등록
+	-->
 	<context:component-scan base-package="spring.model"></context:component-scan>
 
 	<!--

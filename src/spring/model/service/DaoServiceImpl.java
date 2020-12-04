@@ -7,7 +7,11 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import org.springframework.stereotype.Service;
+
 // *Impl - 서비스를 구현한 클래스
+// 컨트롤러에 등록하지 않아도 Autowired 연결
+@Service
 public class DaoServiceImpl implements DaoService {
 
 	private Connection getConnection() throws Exception {
