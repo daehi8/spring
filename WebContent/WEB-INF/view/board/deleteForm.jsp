@@ -23,7 +23,7 @@
 <body bgcolor="${bodyback_c}">
 <center><b>글삭제</b>
 <br>
-<form method="POST" name="delForm"  action="/study/ch19/deletePro.do?pageNum=${pageNum}" 
+<form method="POST" name="delForm"  action="/spring/board/deletePro.do?pageNum=${pageNum}" 
    onsubmit="return deleteSave()"> 
  <table border="1" align="center" cellspacing="0" cellpadding="0" width="360">
   <tr height="30">
@@ -39,7 +39,7 @@
     <td align=center bgcolor="${value_c}">
       <input type="submit" value="글삭제" >
       <input type="button" value="글목록" 
-       onclick="document.location.href='/study/ch19/list.do?pageNum=${pageNum}'">     
+       onclick="document.location.href='/spring/board/list.do?pageNum=${pageNum}'">     
    </td>
  </tr>  
 </table> 

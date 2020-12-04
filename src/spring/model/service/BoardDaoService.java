@@ -5,10 +5,12 @@ import java.util.List;
 
 public interface BoardDaoService {
 	
-	// DB 연결 정보
+	// DB 연결 정보 정의
+	// DB에대한 정보들 주석으로 작성
 	public Connection getConnection() throws Exception;
 	
 	// 글작성
+	// 필요한 기능과 변수 정의 주석으로 작성
 	public void insertArticle(BoardDataBean article) throws Exception;
 	
 	// 전체 게시글 수 조회

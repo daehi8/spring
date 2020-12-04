@@ -1,29 +1,22 @@
 package spring.model.service;
 import java.sql.*;
 import javax.sql.*;
+
+import org.springframework.stereotype.Service;
+
 import javax.naming.*;
 import java.util.*; 
 
-public class BoardDBBean {
-
-	private static BoardDBBean instance = new BoardDBBean();
-	
-	public static BoardDBBean getInstance() {
-		return instance;
-	
-	}
-	private BoardDBBean() {}
-	
-	private Connection getConnection() throws Exception {
+@Service("boardDAO")
+public class BoardDBBean implements BoardDaoService{
+	public Connection getConnection() throws Exception {
 		Context initCtx = new InitialContext();
 		Context envCtx = (Context) initCtx.lookup("java:comp/env");
 		DataSource ds = (DataSource)envCtx.lookup("jdbc/orcl");
 		return ds.getConnection();
-	}
+	}	
 	
-	
-	public void insertArticle(BoardDataBean article) throws Exception {
-		
+	public void insertArticle(BoardDataBean article) throws Exception {		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

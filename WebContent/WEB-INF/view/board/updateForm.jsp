@@ -12,7 +12,7 @@
 <body bgcolor="${bodyback_c}">  
 <center><b>글수정</b>
 <br>
-<form method="post" name="writeform" action="/study/ch19/updatePro.do?pageNum=${pageNum}" onsubmit="return writeSave()">
+<form method="post" name="writeform" action="/spring/board/updatePro.do?pageNum=${pageNum}" onsubmit="return writeSave()">
 <table width="400" border="1" cellspacing="0" cellpadding="0" align="center">
   <tr>
     <td  width="70"  bgcolor="${value_c}" align="center">이 름</td>
@@ -46,7 +46,7 @@
      <input type="submit" value="글수정" >  
      <input type="reset" value="다시작성">
      <input type="button" value="목록보기" 
-       onclick="document.location.href='/study/ch19/list.do?pageNum=${pageNum}'">
+       onclick="document.location.href='/spring/board/list.do?pageNum=${pageNum}'">
    </td>
  </tr>
  </table>

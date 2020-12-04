@@ -12,12 +12,12 @@
 <body >  
 <center><b>글쓰기</b>
 <br>
-<form method="post" name="writeform" action="/spring/writePro.do" onsubmit="return writeSave()">
+<form method="post" name="writeform" action="/spring/board/writePro.do" onsubmit="return writeSave()">
 
 <table width="400" border="1" cellspacing="0" cellpadding="0"  align="center">
    <tr>
     <td align="right" colspan="2" >
-	    <a href="/study/ch19/list.do"> 글목록</a> 
+	    <a href="/spring/board/list.do"> 글목록</a> 
    </td>
    </tr>
    <tr>
@@ -55,7 +55,7 @@
  <td colspan=2  align="center"> 
   <input type="submit" value="글쓰기" >  
   <input type="reset" value="다시작성">
-  <input type="button" value="목록보기" OnClick="window.location='/study/ch19/list.do'">
+  <input type="button" value="목록보기" OnClick="window.location='/spring/board/list.do'">
 </td></tr></table>    
 </form>      
 </body>
