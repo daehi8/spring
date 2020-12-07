@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.naming.Context;
@@ -59,7 +60,26 @@ public class FileServiceImpl implements FileService{
 
 	@Override
 	public FileDTO selectNum(int num) throws Exception {
-		return null;
+		FileDTO dto = new FileDTO();
+		try {
+			conn = getConnection();
+			String sql = "select * from fileList where num = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next()) {
+				dto.setNum(rs.getInt("num"));
+				dto.setId(rs.getString("id"));
+				dto.setOrgname(rs.getString("orgname"));
+				dto.setSavename(rs.getString("savename"));
+				dto.setReg(rs.getTimestamp("reg"));
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			closeAll();
+		}
+		return dto;
 	}
 
 	@Override
@@ -87,6 +107,29 @@ public class FileServiceImpl implements FileService{
 	public void fileDelete(int num) throws Exception {
 		
 	}
-	
 
+	@Override
+	public List selectAll() throws Exception {
+		List list = new ArrayList();
+		try {
+			conn = getConnection();
+			String sql = "select * from fileList order by reg desc";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				FileDTO dto = new FileDTO();
+				dto.setNum(rs.getInt("num"));
+				dto.setId(rs.getString("id"));
+				dto.setOrgname(rs.getString("orgname"));
+				dto.setSavename(rs.getString("savename"));
+				dto.setReg(rs.getTimestamp("reg"));
+				list.add(dto);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			closeAll();
+		}
+		return list;
+	}
 }

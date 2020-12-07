@@ -18,4 +18,8 @@ public interface FileService {
 	
 	// 삭제
 	public void fileDelete(int num)throws Exception;
+	
+	// 파일 리스트 확인
+	public List selectAll()throws Exception;
+	
 }
