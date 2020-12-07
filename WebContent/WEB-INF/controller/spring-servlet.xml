@@ -9,6 +9,12 @@
 	http://www.springframework.org/schema/context/spring-context-3.0.xsd"
 	>
 	
+	<!-- spring interceptor -fileUpload -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="-1"/> <!-- -1은 업로드 크기의 제한없음-->
+		<property name="defaultEncoding" value="UTF-8"/>
+	</bean>
+	
 	<!-- 
 	spring interceptor 
 	RequestMapping의 경로로 이동할때 경로의 앞과 뒤에 값을 추가한다.
