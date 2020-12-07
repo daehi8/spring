@@ -105,7 +105,17 @@ public class FileServiceImpl implements FileService{
 
 	@Override
 	public void fileDelete(int num) throws Exception {
-		
+		try {
+			conn = getConnection();
+			String sql = "delete from fileList where num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			closeAll();
+		}
 	}
 
 	@Override

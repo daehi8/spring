@@ -102,4 +102,19 @@ public class FileBean {
 	    response.getOutputStream().flush();
 	    response.getOutputStream().close();
 	}
+	
+	@RequestMapping("delete.do")
+	public String delete(HttpServletResponse response, HttpServletRequest request, int num)throws Exception{
+		FileDTO dto = fileServiceImpl.selectNum(num);
+		
+		// 삭제할 파일 위치
+		File file = new File("C:\\Users\\82107\\Desktop\\WORK\\SAVE\\" + dto.getSavename());
+		
+		// 파일 삭제 및 데이터베이스 삭제
+		if(file.exists() == true){
+			file.delete();
+			fileServiceImpl.fileDelete(num);
+		}
+		return "redirect:/file/list.do";	
+	}	
 }
