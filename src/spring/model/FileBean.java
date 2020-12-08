@@ -21,6 +21,9 @@ import org.springframework.web.servlet.ModelAndView;
 public class FileBean {
 	
 	@Autowired
+	private FileService fileDAO = null;
+	
+	@Autowired
 	private FileService fileServiceImpl = null;
 	
 	@RequestMapping("form.do")
@@ -76,8 +79,8 @@ public class FileBean {
 	
 	@RequestMapping("list.do")
 	public String list(Model model)throws Exception{
-		model.addAttribute("list", fileServiceImpl.selectAll());
-		
+		//model.addAttribute("list", fileServiceImpl.selectAll());
+		model.addAttribute("list", fileDAO.selectAll());
 		return "1207/list";		
 	}
 	

@@ -9,6 +9,9 @@
 	http://www.springframework.org/schema/context/spring-context-3.0.xsd"
 	>
 	
+	<!-- config파일 자동 로드 location="classpath:database.properties" /!-->
+	<context:property-placeholder location="/WEB-INF/*.properties"/>
+	
 	<!-- download -->
 	<bean id="downloadViewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
        <property name="order" value="0" />
