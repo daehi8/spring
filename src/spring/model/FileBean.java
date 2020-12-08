@@ -14,6 +14,7 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/file/")
@@ -55,10 +56,12 @@ public class FileBean {
 		fileServiceImpl.fileUpdate(dto);
 		
 		// 저장경로
-		String savePath = "C:\\Users\\82107\\Desktop\\WORK\\SAVE\\";
+		//String savePath = "C:\\Users\\82107\\Desktop\\WORK\\SAVE\\";
+		String savePath = request.getRealPath("save");
+		System.out.println(savePath);
 		
 		// 파일 저장위치 객체 생성
-		File saveFile = new File(savePath+saveName); 	
+		File saveFile = new File(savePath+"\\"+saveName); 	
 		
 		// 파일업로드 예외처리
 		try {
@@ -83,7 +86,8 @@ public class FileBean {
 		FileDTO dto = fileServiceImpl.selectNum(num);
 		
 		// 다운로드할 파일 위치
-		File file = new File("C:\\Users\\82107\\Desktop\\WORK\\SAVE\\" + dto.getSavename());
+		String savePath = request.getRealPath("save");
+		File file = new File(savePath + "\\" + dto.getSavename());
 		
 		// 다운로드 전 버퍼 생성
 		BufferedInputStream in = new BufferedInputStream(new FileInputStream(file));
@@ -92,7 +96,9 @@ public class FileBean {
 		response.setContentType("application/octet-stream");
 		
 		// 리스폰스 헤더에 원본 파일이름을 다운로드이름으로 저장
-		response.setHeader("Content-Disposition", "attachment; filename=\""+ dto.getOrgname() + "\"");
+		String fileName = java.net.URLEncoder.encode(dto.getOrgname(),"UTF-8");
+		response.setHeader("Content-Disposition", "attachment; filename=\""+ fileName + "\"");
+		response.setHeader("Content-Transfer-Encoding", "binary");
 		
 		// 다운로드
 		FileCopyUtils.copy(in, response.getOutputStream());
@@ -103,12 +109,24 @@ public class FileBean {
 	    response.getOutputStream().close();
 	}
 	
+	@RequestMapping("down.do")
+	public ModelAndView down(HttpServletRequest request, int num) throws Exception {
+		FileDTO dto = fileServiceImpl.selectNum(num);
+		String path = request.getRealPath("save")+"//"+dto.getSavename();
+		File file = new File(path);
+		// 다운로드 BEAN, 파라미터, 값 -> 파라미터와 값을 BEAN에 전송
+		ModelAndView mv =new ModelAndView("download", "downloadFile", file);
+		
+		return mv;
+	}
+	
 	@RequestMapping("delete.do")
 	public String delete(HttpServletResponse response, HttpServletRequest request, int num)throws Exception{
 		FileDTO dto = fileServiceImpl.selectNum(num);
 		
 		// 삭제할 파일 위치
-		File file = new File("C:\\Users\\82107\\Desktop\\WORK\\SAVE\\" + dto.getSavename());
+		String savePath = request.getRealPath("save");
+		File file = new File(savePath + "\\" + dto.getSavename());
 		
 		// 파일 삭제 및 데이터베이스 삭제
 		if(file.exists() == true){

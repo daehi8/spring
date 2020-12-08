@@ -10,7 +10,7 @@
 </head>
 <body>
 	<c:forEach var="dto" items="${list}">
-	${dto.num} ${dto.id} ${dto.orgname} ${dto.reg} 
+	${dto.num} ${dto.id} <a href="/spring/file/down.do?num=${dto.num}">${dto.orgname}</a> ${dto.reg} 
 	<input type ="button" value ="다운로드" onclick="window.location.href='/spring/file/download.do?num=${dto.num}'"/> 
 	<input type ="button" value ="삭제" onclick="window.location.href='/spring/file/delete.do?num=${dto.num}'"/> <br />
 	<hr />
