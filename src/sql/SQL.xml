@@ -3,10 +3,51 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="test">
-	<!-- sql query 작성  -->
+
+	<!-- 컬럼의 값을 변수에 대입 -->
+	<!-- DTO에 없는 컬럼일 경우에 주로 사용 -->
+	<resultMap type="dtoMap" id="fileDTO">
+		<result column="idkorea" property="id"/>
+	</resultMap>
+	<select id="idkore" resultType="dtoMap">
+		select id||'korea' idkorea from fileList
+	</select>
 	
+	<!-- sql query 작성  -->
 	<select id="selectAll" resultType="fileDTO">
 		select * from fileList
-	</select>	
+	</select>
+	
+	<!-- 파라미터와 리턴 타입에 맞게 작성 -->
+	<select id="selectOne" resultType="String" parameterType="int">
+		select id from fileList where num=#{value}
+	</select>
+	
+	<!-- 값이 여러개일 경우 리스트로 리턴 -->
+	<select id="selectList" resultType="String" parameterType="String">
+		select orgname from fileList where id=#{value}
+	</select>
+	
+	<select id="selectFile" resultType="String" parameterType="fileDTO">
+		select orgname from fileList where num=#{num}
+	</select>
+	
+	<select id="selectMap" resultType="String" parameterType="map">
+		select orgname from fileList where id=#{mid} and num=#{mnum}
+	</select>
+	
+	<select id="selectCount" resultType="int">
+		select count(*) from fileList
+	</select>
+	
+	<!-- resultType은 select에서만 사용 -->
+	<insert id="insertFile" parameterType="fileDTO">
+		insert into fileList values(fileList_seq.nextval, #{id}, #{orgname}, #{savename}, sysdate)
+	</insert>
+	
+	<update id="updateFile" parameterType="fileDTO">
+		update fileList set id=#{id}, orgname=#{orgname} where num=#{num}
+	</update>
+	<delete id="delFile"></delete>	
 </mapper>
 

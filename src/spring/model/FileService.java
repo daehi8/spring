@@ -22,4 +22,12 @@ public interface FileService {
 	// 파일 리스트 확인
 	public List selectAll()throws Exception;
 	
+	// 아이디 찾기
+	public String selectId(int num)throws Exception;
+	
+	
+	public String selectFile(FileDTO dto)throws Exception;
+	
+	
+	public int selectCount()throws Exception;
 }

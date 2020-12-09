@@ -3,6 +3,7 @@ package spring.model;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -137,5 +138,21 @@ public class FileBean {
 			fileServiceImpl.fileDelete(num);
 		}
 		return "redirect:/file/list.do";	
-	}	
+	}
+	
+	@RequestMapping("fileNum.do")
+	public String fileNum(int num, Model model, FileDTO dto) throws Exception {
+		String id = fileDAO.selectId(num);
+		model.addAttribute("id", id);
+		
+		List list = fileDAO.selectId("java");
+		model.addAttribute("list", list);
+		
+		String orgname = fileDAO.selectFile(dto);
+		model.addAttribute("orgname", orgname);
+		
+		model.addAttribute("count", fileDAO.selectCount());
+		
+		return "1209/fileNum";
+	}
 }

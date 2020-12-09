@@ -1,6 +1,8 @@
 package spring.model.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +29,7 @@ public class FileServiceMybatis implements FileService{
 
 	@Override
 	public List selectId(String id) throws Exception {
-		return null;
+		return dao.selectList("test.selectList", id);
 	}
 
 	@Override
@@ -43,6 +45,26 @@ public class FileServiceMybatis implements FileService{
 	@Override
 	public List selectAll() throws Exception {
 		return dao.selectList("test.selectAll");
+	}
+
+	@Override
+	public String selectId(int num) throws Exception {
+		//호출할 sql, parameter 대입값 작성
+		return dao.selectOne("test.selectOne", num);
+	}
+
+	@Override
+	public String selectFile(FileDTO dto) throws Exception {
+		//return dao.selectOne("test.selectFile", dto);
+		Map map = new HashMap();
+		map.put("mid", "java");
+		map.put("mnum", "16");
+		return dao.selectOne("test.selectMap", map);
+	}
+
+	@Override
+	public int selectCount() throws Exception {		
+		return dao.selectOne("test.selectCount");
 	}
 
 }
