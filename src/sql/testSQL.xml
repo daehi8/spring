@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis">
+	
+	<select id="selectColumn" resultType="fileDTO" parameterType="fileDTO">
+		select * from fileList
+		<where>
+			<if test="num > 0">
+				num=#{num}
+			</if>
+			<if test="id != null">
+				and id=#{id}
+			</if>
+		</where>
+	</select>
+
+	<update id="updateFile">
+		update fileList <set> 
+							<if test = "id != null">id=#{id},</if> 
+							<if test = "orgname != null">orgname=#{orgname},</if> 
+							<if test = "savename != null">savename=#{savename}</if> 
+						</set>
+			where num=#{num}
+	</update>
+	
+	<select id="selectFor" resultType="fileDTO">
+		select * from fileList where num in
+		<foreach item="it" collection="list" open="(" separator="," close=")">
+			#{it}
+		</foreach>
+	</select>
+</mapper>
+

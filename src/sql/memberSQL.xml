@@ -3,7 +3,44 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
-	<!-- sql query 작성  -->
+	<insert id="insertMember" parameterType="memberDTO">
+		insert into member values(#{id},
+									#{passwd},
+									#{name},
+									#{jumin1},
+									#{jumin2},
+									#{email},
+									#{blog},
+									sysdate)
+	</insert>
 	
+	<select id="userCheck" resultType="int" parameterType="hashMap" >
+		select count(*) from MEMBER where id =#{id}
+		<if test="passwd != null">
+			and passwd=#{passwd}
+		</if>
+	</select>
+	
+	<select id="getMember" resultType="memberDTO" parameterType="String">
+		select * from MEMBER where id =#{value}
+	</select>
+	
+	<update id="updateMember" parameterType="memberDTO">
+		update MEMBER <set>
+						<if test = "passwd != null">passwd=#{passwd} ,</if>
+						<if test = "name != null">name=#{name} ,</if>
+						<if test = "email != null">email=#{email} ,</if>
+						<if test = "blog != null">blog=#{blog}</if>
+						</set>
+		where id=#{id}
+	</update>
+	
+	<select id="deleteCheck" resultType="String" parameterType="memberDTO">
+		select passwd from MEMBER where id =#{id}
+	</select>
+	
+	<delete id="deleteMember" parameterType="String">
+		delete from MEMBER where id=#{value}
+	</delete>
 </mapper>
 

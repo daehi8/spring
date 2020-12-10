@@ -33,7 +33,7 @@
 </form>
 </c:if>
 
-<c:if test="${check==0}">
+<c:if test="${check!=1}">
 	<script> 
 	  alert("비밀번호가 맞지 않습니다.");
       history.go(-1);

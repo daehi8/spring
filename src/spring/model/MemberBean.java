@@ -10,13 +10,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import ch11.logon.LogonDBBean;
 import ch11.logon.LogonDataBean;
+import spring.model.service.LogonDBServiceMybatis;
+import spring.model.service.TestService;
 
 @Controller
 @RequestMapping("/member/")
 public class MemberBean {
 	
 	@Autowired
-	private LogonDBBean memberDAO = null;
+	private LogonDBServiceMybatis dao = null;
 	
 	@Autowired
 	private LogonDataBean memberDTO = null;
@@ -34,7 +36,7 @@ public class MemberBean {
 	@RequestMapping(value="inputPro.do", method=RequestMethod.POST)
 	public String inputPro(LogonDataBean dto) throws Exception{
 		
-		memberDAO.insertMember(dto);
+		dao.insertMember(dto);
 		
 		return "member/inputPro";
 	}
@@ -45,12 +47,13 @@ public class MemberBean {
 	}
 	
 	@RequestMapping(value="loginPro.do", method=RequestMethod.POST)
-	public String loginPro(String id, 
-			String passwd, 
+	public String loginPro(
+			String id,
+			String passwd,
 			HttpSession session, 
 			Model model) throws Exception {
 
-		int check = memberDAO.userCheck(id, passwd);
+		int check = dao.userCheck(id, passwd);
 		if(check == 1) {
 			session.setAttribute("memId", id);
 		}
@@ -76,7 +79,7 @@ public class MemberBean {
 	public String modifyForm(HttpSession session, Model model) throws Exception {
 		
 		String id = (String) session.getAttribute("memId");
-		memberDTO = memberDAO.getMember(id);
+		memberDTO = dao.getMember(id);
 		model.addAttribute("dto", memberDTO);
 		
 		return "member/modifyForm";
@@ -89,7 +92,7 @@ public class MemberBean {
 		
 		String sessionId = (String)session.getAttribute("memId");
 		dto.setId(sessionId);
-		memberDAO.updateMember(dto);
+		dao.updateMember(dto);
 
 		return "member/modifyPro";
 	}
@@ -103,8 +106,9 @@ public class MemberBean {
 	public String deletePro(String passwd, HttpSession session, Model model) throws Exception {
 		
 		String id = (String)session.getAttribute("memId");
-		int check = memberDAO.deleteMember(id, passwd);
+		int check = dao.userCheck(id, passwd);
 		if(check == 1) {
+			dao.deleteMember(id);
 			session.invalidate();
 		}
 		model.addAttribute("check", check);
@@ -113,11 +117,11 @@ public class MemberBean {
 	}
 	
 	@RequestMapping("confirmId.do")
-	public String confirmId(String id, Model model) throws Exception {
+	public String confirmId(LogonDataBean dto, Model model) throws Exception {
 		
-		int check = memberDAO.confirmId(id);
+		int check = dao.confirmId(dto);
 		model.addAttribute("check", check);
-		model.addAttribute("id", id);
+		model.addAttribute("id", dto.getId());
 		
 		return "member/confirmId";
 	}
