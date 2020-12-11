@@ -1,5 +1,7 @@
 package spring.model.service;
 
+import java.util.List;
+
 import ch11.logon.LogonDataBean;
 
 public interface LogonDBService {
@@ -14,4 +16,6 @@ public interface LogonDBService {
 	 public void updateMember(LogonDataBean dto) throws Exception;
 	 
 	 public void deleteMember(String id) throws Exception;
+	 
+	 public List selectAllMember() throws Exception;
 }

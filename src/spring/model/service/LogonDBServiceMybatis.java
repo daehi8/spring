@@ -1,6 +1,7 @@
 package spring.model.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import ch11.logon.LogonDataBean;
 
-@Service
+@Service("dao")
 public class LogonDBServiceMybatis implements LogonDBService {
 
 	@Autowired
@@ -46,6 +47,11 @@ public class LogonDBServiceMybatis implements LogonDBService {
 	@Override
 	public void deleteMember(String id) throws Exception {
 		dao.delete("member.deleteMember", id);
+	}
+
+	@Override
+	public List selectAllMember() throws Exception {
+		return dao.selectList("member.selectAllMember");
 	}
 
 }

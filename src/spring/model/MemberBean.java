@@ -1,5 +1,8 @@
 package spring.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,15 +13,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import ch11.logon.LogonDBBean;
 import ch11.logon.LogonDataBean;
-import spring.model.service.LogonDBServiceMybatis;
-import spring.model.service.TestService;
+import spring.model.service.LogonDBService;
 
 @Controller
 @RequestMapping("/member/")
 public class MemberBean {
 	
 	@Autowired
-	private LogonDBServiceMybatis dao = null;
+	private LogonDBService dao = null;
 	
 	@Autowired
 	private LogonDataBean memberDTO = null;
@@ -124,5 +126,11 @@ public class MemberBean {
 		model.addAttribute("id", dto.getId());
 		
 		return "member/confirmId";
+	}
+	
+	@RequestMapping("allmember.do")
+	public String selectAllMember(Model model) throws Exception{
+		model.addAttribute("memlist", dao.selectAllMember());
+		return "member/selectAllMember";	
 	}
 }
