@@ -6,6 +6,7 @@
 <head>
 <title>회원가입</title>
 <link href="/resource/style/style.css" rel="stylesheet" type="text/css">
+<script src="//code.jquery.com/jquery-3.5.1.min.js"></script>
 <script language="JavaScript">
     
     function checkIt() {
@@ -49,6 +50,22 @@
         // 새로운 윈도우를 엽니다.
         open(url, "confirm",  "toolbar=no, location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=300, height=200");
     }
+    function ajaxConfirmid(userinput){
+        $.ajax({
+           url:"/spring/member/confirmId2.do",
+           data : {id:$("#id").val()},
+           success:function(result){
+              if(result == '1'){
+            	  // html() - html 태그 적용 가능
+            	  // text() - 텍스트 내용 그대로 출력
+            	  // append() - 기존의 내용에 추가
+                 $("#confirm").html("<font color=red>사용불가</font>");   
+              }else{
+                 $("#confirm").html("<font color=green>사용가능</font>");
+              }
+           }
+        });
+     }
 </script>
 
 
@@ -68,9 +85,9 @@
     <tr> 
       <td width="200"> 사용자 ID</td>
       <td width="400"> 
-        <input type="text" name="id" size="10" maxlength="12">
-        <input type="button" name="confirm_id" value="ID중복확인" 
-        							OnClick="openConfirmid(this.form)">
+        <input type="text" name="id" size="10" maxlength="12" id="id">
+        <input type="button" name="confirm_id" value="ID중복확인" OnClick="ajaxConfirmid(this.form)">
+        <label id ="confirm"></label>
       </td>
     </tr>
     <tr> 

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ch11.logon.LogonDBBean;
 import ch11.logon.LogonDataBean;
@@ -38,6 +39,12 @@ public class MemberBean {
 		model.addAttribute("id", dto.getId());
 		
 		return "member/confirmId";
+	}
+	
+	@RequestMapping("confirmId2.do")
+	public @ResponseBody String confirmId2(LogonDataBean dto, Model model) throws Exception {		
+		int check = dao.confirmId(dto);
+		return check+"";
 	}
 	
 	@RequestMapping("inputForm.do")
