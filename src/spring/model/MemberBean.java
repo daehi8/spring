@@ -30,6 +30,16 @@ public class MemberBean {
 		return "member/main";
 	}
 	
+	@RequestMapping("confirmId.do")
+	public String confirmId(LogonDataBean dto, Model model) throws Exception {
+		
+		int check = dao.confirmId(dto);
+		model.addAttribute("check", check);
+		model.addAttribute("id", dto.getId());
+		
+		return "member/confirmId";
+	}
+	
 	@RequestMapping("inputForm.do")
 	public String inputForm() {
 		return "member/inputForm";
@@ -64,8 +74,9 @@ public class MemberBean {
 		return "member/loginPro";
 	}
 	
+	// 로그인 후 사용 가능 메서드 이름 앞에 logon_ 를 붙여준다.
 	@RequestMapping("logout.do")
-	public String logout(HttpSession session) {
+	public String logon_logout(HttpSession session) {
 		
 		session.invalidate();
 		
@@ -73,12 +84,12 @@ public class MemberBean {
 	}
 	
 	@RequestMapping("modify.do")
-	public String modify() {
+	public String logon_modify() {
 		return "member/modify";
 	}
 	
 	@RequestMapping("modifyForm.do")
-	public String modifyForm(HttpSession session, Model model) throws Exception {
+	public String logon_modifyForm(HttpSession session, Model model) throws Exception {
 		
 		String id = (String) session.getAttribute("memId");
 		memberDTO = dao.getMember(id);
@@ -88,7 +99,7 @@ public class MemberBean {
 	}
 	
 	@RequestMapping("modifyPro.do")
-	public String modifyPro(LogonDataBean dto, 
+	public String logon_modifyPro(LogonDataBean dto, 
 			HttpSession session, 
 			Model model) throws Exception {
 		
@@ -100,12 +111,12 @@ public class MemberBean {
 	}
 	
 	@RequestMapping("deleteForm.do")
-	public String deleteForm() {
+	public String logon_deleteForm() {
 		return "member/deleteForm";
 	}
 	
 	@RequestMapping("deletePro.do")
-	public String deletePro(String passwd, HttpSession session, Model model) throws Exception {
+	public String logon_deletePro(String passwd, HttpSession session, Model model) throws Exception {
 		
 		String id = (String)session.getAttribute("memId");
 		int check = dao.userCheck(id, passwd);
@@ -116,16 +127,6 @@ public class MemberBean {
 		model.addAttribute("check", check);
 		
 		return "member/deletePro";
-	}
-	
-	@RequestMapping("confirmId.do")
-	public String confirmId(LogonDataBean dto, Model model) throws Exception {
-		
-		int check = dao.confirmId(dto);
-		model.addAttribute("check", check);
-		model.addAttribute("id", dto.getId());
-		
-		return "member/confirmId";
 	}
 	
 	@RequestMapping("allmember.do")
